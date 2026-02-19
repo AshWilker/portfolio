@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashlie's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="book-container">
+        <div class="book">
+            <div class="page left-side">
+                <div class="content">
+                    <img src="images/girlread.jpg" alt="Ashlie Reading" class="author-img">
+                    <p class="author-label">AUTHOR</p>
+                    <h1>Ashlie</h1>
+                    <div class="divider"></div>
+                    <p>Software Development student at Mohawk College. I am focused on building engaging, user-focused applications through logic and creative design.</p>
+                    <p class="hobby">Current Reads: Thrillers & Horror</p>
+                </div>
+            </div>
+    
+            <div class="page flip-page" id="flippingPage2">
+                <div class="page-face front">
+                    <h2>Chapter 2: Works</h2>
+                    <p class="assistant-note"><i>Psst... Speak to the Library Assistant for project files!</i></p>
+                    <div class="project-card">
+                        <strong>PHP Dungeon Crawler</strong>
+                        <p>An MVC-based web application utilizing PHP and SQL for dynamic state management.</p>
+                    </div>
+                    <div class="project-card">
+                        <strong>Maze Navigator</strong>
+                        <p>An Intelligence Systems project focused on pathfinding search algorithms within grid environments.</p>
+                    </div>
+                    <div class="corner-fold" onclick="flip(2)"><span>Flip</span></div>
+                </div>
+                <div class="page-face back">
+                    <h2>Correspondence</h2>
+                    
+                    <div class="contact-item">
+                        <strong>Professional Resume</strong>
+                        <p><a href="resume.pdf" class="resume-btn" download>Download PDF</a></p>
+                    </div>
+
+                    <div class="contact-item">
+                        <strong>Email</strong>
+                        <p>
+                            <a href="mailto:Ashlie.Wilker@mohawkcollege.ca" class="contact-link">
+                                Ashlie.Wilker@mohawkcollege.ca
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="contact-item">
+                        <strong>LinkedIn</strong>
+                        <p>
+                            <a href="https://www.linkedin.com/in/ashlie-wilker-9a5553277" target="_blank" class="contact-link">
+                                linkedin.com/in/ashlie-wilker
+                            </a>
+                        </p>
+                    </div>
+                    <div class="corner-fold back-fold" onclick="flip(2)"><span>Back</span></div>
+                </div>
+            </div>
+    
+            <div class="page flip-page" id="flippingPage1">
+                <div class="page-face front">
+                    <h2>Chapter 1: Education</h2>
+                    <div class="edu-card">
+                        <div class="college-img-container">
+                            <img src="images/mohawk.jpg" alt="Mohawk College" class="college-img">
+                        </div>
+                        <h3>Mohawk College</h3>
+                        <p><strong>Advanced Diploma</strong></p>
+                        <p>Software Development (4th Semester)</p>
+                        <p>Focused on Intelligence Systems and Project Management.</p>
+                    </div>
+                    <div class="corner-fold" onclick="flip(1)"><span>Flip</span></div>
+                </div>
+                <div class="page-face back">
+                    <h2>Technical Toolkit</h2>
+                    <ul class="skills-list">
+                        <li><strong>Languages:</strong> HTML5, CSS3, JavaScript, PHP, Python, C#</li>
+                        <li><strong>Logic:</strong> Data and Algorithms, MVC Design Patterns</li>
+                        <li><strong>Tools:</strong> Figma, VS Code, Git, GitHub</li>
+                        <li><strong>Soft Skills:</strong> Leadership, Problem Solving, Communication</li>
+                    </ul>
+                    <div class="corner-fold back-fold" onclick="flip(1)"><span>Back</span></div>
+                </div>
+            </div>
+    
+            <div class="page right-side">
+                <div class="content">
+                    <h2 class="epilogue">Epilogue</h2>
+                    <p>“We need to understand that if we all work on inclusion together, it’s going to be faster, broader, better, and more thorough than anything we can do on our own.”</p>
+                    <p>- Ellen Pao</p>
+                    <div class="divider"></div>
+                    <p>Built by Ashlie Wilker | 2026</p>
+                    <p>Mohawk College Software Development</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="assistant-container">
+        <div class="speech-bubble" id="bubble">
+            <p id="bubble-text">Meow! Want to see the source code for a project?</p>
+            <div class="bubble-options" id="bubble-options">
+                <button onclick="showProject('dungeon')">Dungeon Crawler</button>
+                <button onclick="showProject('maze')">Maze Navigator</button>
+            </div>
+        </div>
+        <img src="images/cat.jpg" alt="Library Cat" class="cat-librarian" onclick="toggleBubble()">
+    </div>
+
+    <script>
+        /**
+         * Toggles the flip animation for the pages
+         */
+        function flip(pageNumber) {
+            const page = document.getElementById('flippingPage' + pageNumber);
+            page.classList.toggle('is-flipped');
+        }
+
+        /**
+         * Toggles the visibility of the assistant's speech bubble
+         */
+        function toggleBubble() {
+            const bubble = document.getElementById('bubble');
+            bubble.classList.toggle('active');
+        }
+
+        /**
+         * Updates the assistant's dialogue and provides specific links
+         */
+        function showProject(type) {
+            const text = document.getElementById('bubble-text');
+            const options = document.getElementById('bubble-options');
+            
+            if(type === 'dungeon') {
+                text.innerHTML = "The Dungeon Crawler uses MVC logic! <br><br> <a href='https://github.com/AshWilker/PHP-Dungeon-Crawler' target='_blank' class='assistant-link'>Click to View on GitHub</a>";
+            } else {
+                text.innerHTML = "Oh! The Maze Navigator files are currently being archived. Please check again later!";
+            }
+            
+            options.style.display = "none";
+            
+            // Revert assistant dialogue back to default after 6 seconds
+            setTimeout(() => {
+                text.innerText = "Meow! Want to see the source code for a project?";
+                options.style.display = "block";
+            }, 6000);
+        }
+    </script>
+</body>
+</html>
